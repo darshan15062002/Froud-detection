@@ -30,7 +30,7 @@ admin.initializeApp({
 });
 
 
-mongoose.connect("mongodb+srv://darshan:$$dar$$123@cluster0.ohxhu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+mongoose.connect("mongodb+srv://darshanjain15062002:$$dar$$123@cluster0.e0xz0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
