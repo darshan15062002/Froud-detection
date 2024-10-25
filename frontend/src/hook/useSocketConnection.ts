@@ -9,7 +9,7 @@ export const useSocketConnection = (
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const _socket = io('https://ice-server-socket.onrender.com');
+    const _socket = io('https://froud-detection.onrender.com');
     setSocket(_socket);
 
     return () => {

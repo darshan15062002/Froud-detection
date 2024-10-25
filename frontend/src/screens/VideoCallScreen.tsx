@@ -36,7 +36,7 @@ const VideoCallScreen = ({route, navigation}: any) => {
     try {
       let _socket = socket;
       if (!_socket) {
-        _socket = io('https://ice-server-socket.onrender.com');
+        _socket = io('https://froud-detection.onrender.com');
         // const _socket = io('http://10.0.2.2:8000');
         // _socket.emit('set-status', {code});
         setSocket(_socket);
@@ -276,7 +276,7 @@ const VideoCallScreen = ({route, navigation}: any) => {
       ],
     });
 
-    const _socket = io('https://ice-server-socket.onrender.com');
+    const _socket = io('https://froud-detection.onrender.com');
     // const _socket = io('http://10.0.2.2:8000');
     // _socket.emit('set-status', {code});
     setSocket(_socket);
