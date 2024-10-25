@@ -129,10 +129,12 @@ io.on('connection', (socket) => {
 })
 
 const authRoute = require("./router/authRoute.js");
+const transactionRoute = require("./router/transactionRoute.js");
 const User = require('./model/userModel.js');
 const sendNotification = require('./utils/sendNotification.js');
 
 app.use("/api/v1/", authRoute)
+app.use("/api/v1/", transactionRoute)
 
 app.get("/", (req, res) => {
     res.send("hello ")
