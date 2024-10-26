@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    isSupport: {
+        type: Boolean,
+        default: false
+    },
     phone: {
         type: Number,
         required: [true, "please enter phone no"],
