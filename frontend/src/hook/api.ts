@@ -82,3 +82,15 @@ export const sendTokenToServer = async (token:string) => {
         console.error('Failed to send device token to server:', error);
     }
 };
+export const verifyTransaction = async (transactionId, verified, verificationMethod = 'webrtc') => {
+    try {
+      const response = await axios.post(`${server}/verify-transaction/${transactionId}`, {
+        verified,
+        verificationMethod,
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error verifying transaction:', error);
+      throw new Error(error.response?.data?.error || 'Failed to verify transaction');
+    }
+  };

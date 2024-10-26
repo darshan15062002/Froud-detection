@@ -14,8 +14,8 @@ import CallControls from '../components/CallControls';
 import {useUser} from '../hook/useUser';
 
 const VideoCallScreen = ({route, navigation}: any) => {
-  const {user} = useUser();
-  const {email, roomId, self} = route.params;
+  const {user, transactionId: transactionID} = useUser();
+  const {email, roomId, self, transactionId} = route.params;
   const [socket, setSocket] = useState<Socket | null>(null);
   const [roomJoin, setRoomJoin] = useState('');
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -337,6 +337,7 @@ const VideoCallScreen = ({route, navigation}: any) => {
         stream={stream}
         remoteStream={remoteStream}
         localWebcamOn={localWebcamOn}
+        transactionId={transactionId || transactionID}
       />
 
       {(remoteStream || stream) && (

@@ -18,7 +18,7 @@ const requestUserPermission = async () => {
     }
   };
 const RemoteNotification = () => {
-  const {setCode} = useUser()
+  const {setCode,setTransactionId} = useUser()
     useEffect(() => {
       // Request permission for notifications
       requestUserPermission();
@@ -41,6 +41,7 @@ const RemoteNotification = () => {
       
         const { data } = remoteMessage;
         setCode(data?.code)
+        setTransactionId(data?.transactionId)
         console.log("darshan remote",data);
         
 

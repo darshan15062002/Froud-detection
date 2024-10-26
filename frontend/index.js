@@ -13,6 +13,7 @@ import notifee, { AndroidImportance, EventType } from '@notifee/react-native';
 
 
 let code = null
+let transactionId = null
 notifee.onBackgroundEvent(async ({ type, detail }) => {
     if (type === EventType.ACTION_PRESS) {
         if (detail.pressAction.id === 'answer') {
@@ -25,7 +26,7 @@ notifee.onBackgroundEvent(async ({ type, detail }) => {
                 const phone = userData.user.phone;
                 const roomId = userData.user.code;
 
-                const link = `videocall://video-call/${phone}/${code || roomId}`;
+                const link = `videocall://video-call/${phone}/${code || roomId}/${transactionId}`;
                 console.log(link);
 
                 // Open the deep link
@@ -52,6 +53,7 @@ messaging().setBackgroundMessageHandler(async (remoteMessage) => {
         console.log('Displaying incoming call:', data);
 
         code = data.code
+        transactionId = data.transactionId
         showIncomingCallNotification()
 
 

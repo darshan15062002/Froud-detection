@@ -17,7 +17,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import messaging from '@react-native-firebase/messaging';
 
 function Login({navigation}: any): React.JSX.Element {
-  const {user, loading: userLoading, userList, refetch} = useUser();
+  const {
+    user,
+    loading: userLoading,
+    userList,
+    refetch,
+    code,
+    transactionId,
+  } = useUser();
   const [phone, setPhone] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [loading, setLoading] = useState(false);
@@ -41,7 +48,7 @@ function Login({navigation}: any): React.JSX.Element {
       if (remoteMessage.data && remoteMessage.data.type === 'call') {
         const phone = remoteMessage.data.phone;
         const roomId = remoteMessage.data.roomId;
-        const url = `myapp://video-call/${phone}/${roomId}`;
+        const url = `myapp://video-call/${phone}/${roomId}/${remoteMessage?.data?.transactionId}`;
 
         Linking.openURL(url).catch(err =>
           console.error('Failed to open URL:', err),
@@ -60,8 +67,9 @@ function Login({navigation}: any): React.JSX.Element {
           if (userData?.user) {
             handleMakeConnection(
               userData?.user?.name,
-              userData?.user?.code,
+              code || userData?.user?.code,
               true,
+              transactionId,
             );
           }
         } else if (detail.pressAction.id === 'decline') {
@@ -100,10 +108,11 @@ function Login({navigation}: any): React.JSX.Element {
     email: string,
     roomId: string,
     self: boolean,
+    transactionId: string,
   ) => {
     // Implement your call connection logic here
     console.log(`Initiating call to ${email} in room ${roomId}`);
-    navigation.navigate('VideoCall', {email, roomId, self});
+    navigation.navigate('VideoCall', {email, roomId, self, transactionId});
   };
 
   if (userLoading) {
