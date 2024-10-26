@@ -41,7 +41,7 @@ router.post("/login", async (req, res) => {
 
 
 router.post("/register", async (req, res) => {
-    const { name, phone, password, code, transactionPatterns, trustedDevices, riskScore, securityFlags, recentTransactions, lastVerifiedActivity, } = req.body;
+    const { name, phone, password, code, transactionPatterns, isSupport, trustedDevices, riskScore, securityFlags, recentTransactions, lastVerifiedActivity, } = req.body;
 
     try {
         // Check if the user already exists
@@ -59,7 +59,7 @@ router.post("/register", async (req, res) => {
             name,
             phone,
             password: hashedPassword,
-            code, transactionPatterns, trustedDevices, riskScore, securityFlags, recentTransactions, lastVerifiedActivity
+            code, transactionPatterns, isSupport, trustedDevices, riskScore, securityFlags, recentTransactions, lastVerifiedActivity
 
         });
 

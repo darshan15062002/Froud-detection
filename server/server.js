@@ -72,7 +72,7 @@ io.on('connection', (socket) => {
         if (!user) return
         console.log("founded User", user);
 
-        user.pushToken && !self && sendNotification(user.pushToken, { callId: "hello", callerName: user?.name })
+        // user.pushToken && !self && sendNotification(user.pushToken, { callId: "hello", callerName: user?.name })
 
         socket.join(room_id)
         emailToSocketMapping.set(email_id, socket.id)

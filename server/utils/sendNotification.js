@@ -7,6 +7,7 @@ const sendNotification = (deviceToken, data,) => {
     const message = {
         data: {
             type: 'call',
+            code: data.code,
             callId: data.callId,
             callerName: data.callerName,
             callerAvatar: data.callerAvatar || '',

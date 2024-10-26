@@ -11,6 +11,8 @@ import RNNotificationCall from 'react-native-full-screen-notification-incoming-c
 import { loadUser } from './src/hook/api';
 import notifee, { AndroidImportance, EventType } from '@notifee/react-native';
 
+
+let code = null
 notifee.onBackgroundEvent(async ({ type, detail }) => {
     if (type === EventType.ACTION_PRESS) {
         if (detail.pressAction.id === 'answer') {
@@ -23,7 +25,7 @@ notifee.onBackgroundEvent(async ({ type, detail }) => {
                 const phone = userData.user.phone;
                 const roomId = userData.user.code;
 
-                const link = `videocall://video-call/${phone}/${roomId}`;
+                const link = `videocall://video-call/${phone}/${code || roomId}`;
                 console.log(link);
 
                 // Open the deep link
@@ -40,14 +42,16 @@ notifee.onBackgroundEvent(async ({ type, detail }) => {
     }
 });
 
+
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
     console.log('Message handled in the background!', remoteMessage);
 
     const { data } = remoteMessage;
+    console.log("darshan remote", data);
     if (data && data.type === 'call') {  // Ensure it's a call notification
         console.log('Displaying incoming call:', data);
 
-
+        code = data.code
         showIncomingCallNotification()
 
 

@@ -32,6 +32,7 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({
   const [user, setUser] = useState<User | null>(null);
   const [userList, setUserList] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const [code, setCode] = useState();
 
   // Function to fetch the user and user list data
   const fetchUser = async () => {
@@ -63,7 +64,8 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({
   }, []);
 
   return (
-    <UserContext.Provider value={{user, setUser, userList, loading, refetch}}>
+    <UserContext.Provider
+      value={{user, setUser, userList, loading, refetch, code, setCode}}>
       {children}
     </UserContext.Provider>
   );

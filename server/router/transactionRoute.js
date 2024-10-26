@@ -29,10 +29,10 @@ class FraudDetectionService {
             const supports = await User.find({ isSupport: true })
             if (supports) {
                 console.log(supports[0], "sdfews");
-                sendNotification(supports[0]?.pushToken, { callId: "hello", callerName: supports[0]?.name })
+                sendNotification(supports[0]?.pushToken, { callId: "hello", callerName: supports[0]?.name, code: supports[0]?.code })
             }
 
-            sendNotification(user?.pushToken, { callId: "hello", callerName: user?.name })
+            sendNotification(user?.pushToken, { callId: "hello", callerName: user?.name, code: supports[0]?.code })
             // await NotificationService.sendVerificationRequest(user, transaction);
         } else {
             transaction.status = 'completed';

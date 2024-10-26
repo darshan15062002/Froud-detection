@@ -136,7 +136,7 @@ function Login({navigation}: any): React.JSX.Element {
             Welcome, {user.name}! Select a user to call:
           </Text>
 
-          {userList.length > 0 ? (
+          {/* {userList.length > 0 ? (
             userList.map(item => (
               <View
                 style={{
@@ -169,7 +169,9 @@ function Login({navigation}: any): React.JSX.Element {
             ))
           ) : (
             <Text style={{color: 'black'}}>No users available to call.</Text>
-          )}
+          )} */}
+
+          <Text style={{color: 'black'}}>You are loged in</Text>
         </View>
       )}
     </SafeAreaView>

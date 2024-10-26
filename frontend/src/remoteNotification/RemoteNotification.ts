@@ -3,6 +3,7 @@ import messaging from '@react-native-firebase/messaging';
 import { sendTokenToServer } from "../hook/api";
 
 import { showIncomingCallNotification } from "../localNotification/LocalNotification";
+import { useUser } from "../hook/useUser";
 
 const requestUserPermission = async () => {
     const authStatus = await messaging().requestPermission();
@@ -17,6 +18,7 @@ const requestUserPermission = async () => {
     }
   };
 const RemoteNotification = () => {
+  const {setCode} = useUser()
     useEffect(() => {
       // Request permission for notifications
       requestUserPermission();
@@ -37,7 +39,10 @@ const RemoteNotification = () => {
       const unsubscribe = messaging().onMessage(async (remoteMessage) => {
         console.log('A new FCM message arrived!', remoteMessage);
       
-        const { callerName, callId, isVideo } = remoteMessage.data;
+        const { data } = remoteMessage;
+        setCode(data?.code)
+        console.log("darshan remote",data);
+        
 
         if (remoteMessage.data.type === 'call') {
           showIncomingCallNotification()
