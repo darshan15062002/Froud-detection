@@ -6,7 +6,6 @@ import Login from './src/screens/Login';
 import VideoCallScreen from './src/screens/VideoCallScreen';
 import RemoteNotification from './src/remoteNotification/RemoteNotification';
 import notifee, {AndroidImportance} from '@notifee/react-native';
-import messaging from '@react-native-firebase/messaging';
 
 const Stack = createStackNavigator();
 

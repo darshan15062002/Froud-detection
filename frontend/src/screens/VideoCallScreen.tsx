@@ -14,7 +14,7 @@ import CallControls from '../components/CallControls';
 import {useUser} from '../hook/useUser';
 
 const VideoCallScreen = ({route, navigation}: any) => {
-  const {user} = useUser();
+  const {user, code} = useUser();
   const {email, roomId, self} = route.params;
   const [socket, setSocket] = useState<Socket | null>(null);
   const [roomJoin, setRoomJoin] = useState('');
@@ -324,8 +324,10 @@ const VideoCallScreen = ({route, navigation}: any) => {
   }
 
   useEffect(() => {
-    email && roomId && handleMakeConnection(email, roomId, self);
-  }, [email, roomId, self]);
+    console.log('just befor connection ', email, roomId, code, self);
+
+    email && roomId && handleMakeConnection(email, code ?? roomId, self);
+  }, [email, roomId, code, self]);
 
   return (
     <SafeAreaView

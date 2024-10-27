@@ -24,6 +24,7 @@ notifee.onBackgroundEvent(async ({ type, detail }) => {
             if (userData?.user) {
                 const phone = userData.user.phone;
                 const roomId = userData.user.code;
+                console.log(code, "code ---------------------------------------", roomId);
 
                 const link = `videocall://video-call/${phone}/${code || roomId}`;
                 console.log(link);

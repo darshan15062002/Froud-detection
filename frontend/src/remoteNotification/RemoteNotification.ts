@@ -41,6 +41,7 @@ const RemoteNotification = () => {
       
         const { data } = remoteMessage;
         setCode(data?.code)
+        console.log(data?.code, "code ---------------------------------------", );
         console.log("darshan remote",data);
         
 

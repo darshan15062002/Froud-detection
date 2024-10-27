@@ -69,10 +69,11 @@ io.on('connection', (socket) => {
 
 
         const user = await User.findOne({ code: room_id });
-        if (!user) return
-        console.log("founded User", user);
+        // if (!user) return
+        // console.log("founded User", user);
 
         // user.pushToken && !self && sendNotification(user.pushToken, { callId: "hello", callerName: user?.name })
+        console.log("data while connection--------------------------------------------------------------------------------------------",);
 
         socket.join(room_id)
         emailToSocketMapping.set(email_id, socket.id)

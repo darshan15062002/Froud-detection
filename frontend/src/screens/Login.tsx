@@ -59,7 +59,7 @@ function Login({navigation}: any): React.JSX.Element {
 
           if (userData?.user) {
             handleMakeConnection(
-              userData?.user?.name,
+              userData?.user?.phone,
               userData?.user?.code,
               true,
             );
