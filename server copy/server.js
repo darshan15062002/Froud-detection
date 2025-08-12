@@ -70,11 +70,23 @@ io.on('connection', (socket) => {
         console.log("userjoin", email_id, room_id, self);
 
 
-        const user = await User.findOne({ code: room_id });
-        if (!user) return
-        console.log("founded User", user);
+        // const user = await User.findOne({ code: room_id });
+        // if (!user) return
+        // console.log("founded User", user);
 
-        user.pushToken && !self && sendNotification(user.pushToken, { callId: "hello", callerName: user?.name })
+        const userRef = admin.firestore().collection("users").doc(email_id);
+        const userDoc = await userRef.get();
+
+        if (!userDoc.exists) {
+            console.log("Target user not found in Firestore");
+            return;
+        }
+
+        const targetUser = userDoc.data();
+        console.log("Target user from Firestore:", targetUser.name);
+
+
+        targetUser.pushToken && !self && sendNotification(targetUser.pushToken, { callId: room_id, callerName: targetUser?.name })
 
         socket.join(room_id)
         emailToSocketMapping.set(email_id, socket.id)
