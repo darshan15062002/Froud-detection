@@ -86,7 +86,7 @@ io.on('connection', (socket) => {
         console.log(targetUser.fcmToken, "Target user from Firestore:", targetUser.name);
 
 
-        targetUser.fcmToken && !self && sendNotification(targetUser.pushToken, { callId: room_id, callerName: targetUser?.name })
+        targetUser.fcmToken && !self && sendNotification(targetUser.fcmToken, { callId: room_id, callerName: targetUser?.name })
 
         socket.join(room_id)
         emailToSocketMapping.set(email_id, socket.id)
