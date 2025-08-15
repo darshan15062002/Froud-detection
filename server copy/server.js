@@ -83,7 +83,7 @@ io.on('connection', (socket) => {
         }
 
         const targetUser = userDoc.data();
-        console.log("Target user from Firestore:", targetUser.name);
+        console.log(targetUser.pushToken, "Target user from Firestore:", targetUser.name);
 
 
         targetUser.pushToken && !self && sendNotification(targetUser.pushToken, { callId: room_id, callerName: targetUser?.name })
